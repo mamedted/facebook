@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { Header } from "../components/Header";
-import { Nav1 } from "../components/Nav1";
+
 export function SetDp() {
   const user = JSON.parse(sessionStorage.getItem("user"));
   if (!user) return <Navigate to="/" />;
@@ -37,8 +36,6 @@ export function SetDp() {
 
   return (
     <>
-      <Header />
-      <Nav1 />
       <h1 className="tc mt20">Add your profile picture</h1>
       <p className="tc">{`Welcome ${firstname}, set up your profile picture so that your friend can easily recognize you.`}</p>
       <div onClick={chooseFile} className="w250 h250 br rounded self-center flex fcx of mt100">

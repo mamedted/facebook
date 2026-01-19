@@ -1,7 +1,7 @@
 export function Nav1() {
   return (
     <>
-      <div className="br flex fcy between -mx-[14px] px8">
+      <div className="flex fcy between -mx-[14px] px8">
         <p className="b text-[28px] text-blue-600">facebook</p>
 
         <div className="flex fcy gap5">

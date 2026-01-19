@@ -13,6 +13,7 @@ import LoginPage from "./assets/pages/LoginPage";
 import { Route, Routes } from "react-router-dom";
 import "./assets/sass.css";
 import { SetDp } from "./assets/pages/SetDp";
+import { Homepage } from "./assets/pages/Homepage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/signup9" element={<SignupPage9 />}></Route>
         <Route path="/signup10" element={<SignupPage10 />}></Route>
         <Route path="/setdp" element={<SetDp />}></Route>
+        <Route path="/homepage" element={<Homepage />}></Route>
       </Routes>
     </>
   );

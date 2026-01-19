@@ -4,8 +4,10 @@ const https = require("https");
 const fs = require("fs");
 const cors = require("cors");
 const multer = require("multer");
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
+const User = require("./models/User");
 require("dotenv").config();
+const bcrypt = require("bcryptjs");
 
 const PORT = 4000;
 const url = "mongodb://127.0.0.1:27017";
@@ -28,38 +30,55 @@ const options = {
 };
 
 async function connectDB() {
-  let client = await MongoClient.connect(url);
-  db = client.db("facebook");
+  await mongoose.connect(url + "/facebook");
   console.log("connected");
 }
 
-connectDB();
+connectDB().catch(console.error);
 
 app.use(cors());
 app.use(express.json());
 
 app.post("/send", async (req, res) => {
-  if (await db.collection("users").insertOne(req.body)) {
-    res.send("SUCCESS");
+  try {
+    const { email, password, ...rest } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res.status(409).json({ STATUS: "EMAIL_EXIST" });
+    }
+    const newUser = new User({ ...rest, password: hashedPassword, email });
+    await newUser.save();
+    res.status(201).json({ status: "SUCCESS" });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ status: "FAILED" });
   }
 });
 
 app.post("/login", async (req, res) => {
   try {
     let { email, password } = req.body;
-    let user = await db.collection("users").findOne({ email });
+    let user = await User.findOne({ email });
+
     if (!user) {
       return res.status(404).json({ status: "NOT_EXIST" });
     }
-    if (user.password !== password) {
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
       return res.status(401).json({ status: "INCORRECT_PASSWORD" });
     }
-    console.log(user);
+
+    if (user.isComplete === "PENDING") {
+      return res.status(202).json({ status: "PENDING" });
+    }
+
     let { _id, firstname, lastname } = user;
     res.status(200).json({ status: "SUCCESS", firstname, lastname, id: _id });
   } catch (e) {
     console.error(e);
-    res.send("Internal server error!");
+    res.status(500).json({ status: "SERVER_ERROR" });
   }
 });
 

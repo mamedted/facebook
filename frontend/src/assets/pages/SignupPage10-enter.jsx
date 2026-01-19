@@ -28,17 +28,20 @@ function SignupPage10() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userdata),
-    })
-      .then((res) => res.text())
-      .then((data) => {
-        if (data.trim() === "SUCCESS") {
+    }).then((res) => {
+      switch (res.status) {
+        case 201:
           alert("Account created succesfully");
           // nav("/");
           // reset();
-        } else {
+          break;
+        case 409:
+          alert("Email already exist");
+          break;
+        default:
           alert("Something is wrong");
-        }
-      });
+      }
+    });
   }
 
   return (

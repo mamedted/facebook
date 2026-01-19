@@ -3,6 +3,7 @@ import { BackBtn } from "./../components/BackBtn";
 import Icon from "./../images/fb_lite.png";
 import { useNavigate } from "react-router-dom";
 import { LoginModal } from "../components/LoginModal";
+
 const api = import.meta.env.VITE_API;
 
 function LoginPage() {
@@ -67,9 +68,15 @@ function LoginPage() {
               },
             });
             break;
+
+          case 202:
+            sessionStorage.setItem("user", JSON.stringify(data));
+            nav("/setdp");
+            break;
+
           case 200:
             sessionStorage.setItem("user", JSON.stringify(data));
-            nav("/setDp");
+            nav("/homepage");
         }
       })
       .catch((e) => console.log(e));
