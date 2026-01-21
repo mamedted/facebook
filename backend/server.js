@@ -48,14 +48,14 @@ app.use(
       secure: true, // true ONLY in HTTPS
       maxAge: 1000 * 60 * 60 * 24, // 1 day
     },
-  })
+  }),
 );
 
 app.use(
   cors({
     origin: process.env.API,
     credentials: true,
-  })
+  }),
 );
 app.use(express.json());
 
@@ -114,6 +114,7 @@ app.post("/uploadDp", (req, res) => {
     const user = await User.findById(req.session.userId);
     if (user) {
       user.isComplete = "COMPLETE";
+      user.DP = req.file.originalname;
       user.save();
     }
 
