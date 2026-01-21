@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+const api = import.meta.env.VITE_API;
 
 export function SetDp() {
   const user = JSON.parse(sessionStorage.getItem("user"));
@@ -10,6 +11,7 @@ export function SetDp() {
   const file = useRef();
   let [photo, setPhoto] = useState(null);
   let [preview, setPreview] = useState(null);
+  let nav = useNavigate();
 
   function chooseFile() {
     file.current.click();
@@ -26,12 +28,22 @@ export function SetDp() {
     let formdata = new FormData();
     formdata.append("dp", photo);
 
-    fetch("https://192.168.1.186:4000/uploadDp", {
+    fetch(`${api}uploadDp`, {
       method: "POST",
       body: formdata,
+      credentials: "include",
     })
       .then((res) => res.text())
-      .then((data) => console.log(data));
+      .then((data) => {
+        switch (data.trim()) {
+          case "SUCCESS":
+            nav("/homepage");
+            break;
+          default:
+            alert("Error");
+        }
+      })
+      .catch((e) => alert(e));
   }
 
   return (
