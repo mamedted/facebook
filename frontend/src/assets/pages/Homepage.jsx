@@ -10,7 +10,6 @@ export function Homepage() {
   const nav = useNavigate();
 
   const [user, setUser] = useState({});
-  const [logout, setLogout] = useState(false);
 
   useEffect(() => {
     let userdata = JSON.parse(sessionStorage.getItem("user"));
@@ -21,7 +20,7 @@ export function Homepage() {
   return (
     <>
       <Header></Header>
-      <Nav1 handleLogout={handleLogout}></Nav1>
+      <Nav1></Nav1>
       <MainNav></MainNav>
       <div className="-mx-[14px] flex fcy py-2 px-3 gap-2 ">
         <div className="flex fcx wh40 noshrink rounded ">
