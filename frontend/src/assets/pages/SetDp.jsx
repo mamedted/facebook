@@ -33,10 +33,13 @@ export function SetDp() {
       body: formdata,
       credentials: "include",
     })
-      .then((res) => res.text())
-      .then((data) => {
-        switch (data.trim()) {
-          case "SUCCESS":
+      .then(async (res) => {
+        let data = await res.json();
+        switch (res.status) {
+          case 200:
+            let user = JSON.parse(sessionStorage.getItem("user"));
+            user.DP = data.DP;
+            sessionStorage.setItem("user", JSON.stringify(user));
             nav("/homepage");
             break;
           default:

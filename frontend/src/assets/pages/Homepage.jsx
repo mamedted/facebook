@@ -1,7 +1,7 @@
 import { Header } from "../components/Header";
 import { Nav1 } from "../components/Nav1";
 import { MainNav } from "../components/MainNav";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const api = import.meta.env.VITE_API;
@@ -9,21 +9,23 @@ const api = import.meta.env.VITE_API;
 export function Homepage() {
   const nav = useNavigate();
 
-  useEffect(() => {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    if (!user) return nav("/");
+  const [user, setUser] = useState({});
+  const [logout, setLogout] = useState(false);
 
-    console.log(user);
-  });
+  useEffect(() => {
+    let userdata = JSON.parse(sessionStorage.getItem("user"));
+    if (!userdata) return nav("/");
+    setUser(userdata);
+  }, []);
 
   return (
     <>
       <Header></Header>
-      <Nav1></Nav1>
+      <Nav1 handleLogout={handleLogout}></Nav1>
       <MainNav></MainNav>
       <div className="-mx-[14px] flex fcy py-2 px-3 gap-2 ">
-        <div className="flex fcx wh40 noshrink  rounded ">
-          <img src="" className="rounded wm hm fit" alt="" />
+        <div className="flex fcx wh40 noshrink rounded ">
+          <img src={api + user.DP} className="rounded wm hm fit" alt="" />
         </div>
 
         <input className="!py-3 !border-0 !rounded-3xl placeholder-black !bg-gray-100 !px-4" placeholder="What's on your mind?" type="text" />

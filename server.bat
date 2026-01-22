@@ -2,7 +2,7 @@
 
 echo Starting frontend and backend...
 
-cd /d "G:\PROJECTS\FB-REACT" 
+cd /d "G:\PROJECTS\FACEBOOK\FB-REACT" 
 start "" code .
 
 
