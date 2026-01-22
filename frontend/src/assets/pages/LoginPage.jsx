@@ -3,7 +3,6 @@ import { BackBtn } from "./../components/BackBtn";
 import Icon from "./../images/fb_lite.png";
 import { useNavigate } from "react-router-dom";
 import { LoginModal } from "../components/LoginModal";
-import { PlusIcon } from "../icons/Icons";
 
 const api = import.meta.env.VITE_API;
 
@@ -88,7 +87,7 @@ function LoginPage() {
     <>
       {errorType.heading && <LoginModal errorType={errorType} setErrorType={setErrorType} />}
       <BackBtn></BackBtn>
-      <PlusIcon></PlusIcon>
+
       <p className="text-center mt-[8%] text-sm text-gray-500">English (US) </p>
       <img className="self-center border-2  rounded-full mt-[20%] mb-[20%] " src={Icon} width="60" alt="" />
       <input ref={input1} className="inp mb-2" placeholder="Email or mobile number" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
