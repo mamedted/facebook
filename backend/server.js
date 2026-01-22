@@ -9,10 +9,13 @@ const mongoose = require("mongoose");
 const User = require("./models/User");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
+const path = require("path");
 
 const PORT = 4000;
 const url = "mongodb://127.0.0.1:27017";
 let db;
+
+app.use(express.static("dp"));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -97,8 +100,11 @@ app.post("/login", async (req, res) => {
       return res.status(202).json({ status: "PENDING", firstname, lastname });
     }
 
-    let { _id, firstname, lastname } = user;
-    res.status(200).json({ status: "SUCCESS", firstname, lastname, id: _id });
+    let { _id, firstname, lastname, DP } = user;
+    res
+      .status(200)
+      .json({ status: "SUCCESS", firstname, lastname, id: _id, DP });
+    console.log(DP);
   } catch (e) {
     console.error(e);
     res.status(500).json({ status: "SERVER_ERROR" });
