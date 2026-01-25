@@ -1,4 +1,4 @@
-import Community from "./../images/comunity.png";
+import Community from "./../assets/images/comunity.png";
 import { BackBtn } from "./../components/BackBtn";
 import { useNavigate } from "react-router-dom";
 

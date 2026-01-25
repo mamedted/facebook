@@ -9,7 +9,7 @@ export function CreateStoryPage() {
   const inputSelect = useRef();
   let [photo, setPhoto] = useState(null);
   let [preview, setPreview] = useState(null);
-
+  ("");
   useEffect(() => {
     selectFile();
 

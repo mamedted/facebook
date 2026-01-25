@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { PlusIcon, Menu, SearchIcon } from "../icons/Icons";
+import { PlusIcon, Menu, SearchIcon } from "../assets/icons/Icons";
 
 export function Nav1() {
   const nav = useNavigate();

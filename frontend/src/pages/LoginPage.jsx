@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { BackBtn } from "./../components/BackBtn";
-import Icon from "./../images/fb_lite.png";
+import Icon from "./../assets/images/fb_lite.png";
 import { useNavigate } from "react-router-dom";
 import { LoginModal } from "../components/LoginModal";
 

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Setting } from "../icons/Icons";
+import { Setting } from "../assets/icons/Icons";
 export function SettingBtn() {
   const nav = useNavigate();
   return (

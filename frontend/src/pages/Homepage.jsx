@@ -3,7 +3,7 @@ import { Nav1 } from "../components/Nav1";
 import { MainNav } from "../components/MainNav";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PlusIcon } from "../icons/Icons";
+import { PlusIcon } from "../assets/icons/Icons";
 import { ExitBtn } from "../buttons/Exit";
 
 const api = import.meta.env.VITE_API;
@@ -76,7 +76,7 @@ export function Homepage() {
       <div className=" of ofy -mx-[14px] no-scrollbar">
         <div className=" flex fcy py-2 px-3 gap-2  ">
           <div className="flex fcx wh40 noshrink rounded ">
-            <img src={user.DP ? api + user.DP : "/avatar.png"} className="rounded wm hm fit" alt="" />
+            <img onClick={() => nav("/userprofile")} src={user.DP ? api + user.DP : "/avatar.png"} className="rounded wm hm fit" alt="" />
           </div>
 
           <input onClick={() => nav("/createpost")} className="!py-3 !border-0 !rounded-3xl placeholder-black !bg-gray-100 !px-4 focus:outline-none" placeholder="What's on your mind?" type="text" />

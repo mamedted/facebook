@@ -1,23 +1,24 @@
 import { useState } from "react";
-import SignupPage1 from "./assets/pages/SignupPage1";
-import SignupPage2 from "./assets/pages/SignupPage2-name";
-import SignupPage3 from "./assets/pages/SignupPage3-birthdate";
-import SignupPage4 from "./assets/pages/SignupPage4-gender";
-import SignupPage5 from "./assets/pages/SignupPage5-number";
-import SignupPage6 from "./assets/pages/SignupPage6-email";
-import SignupPage7 from "./assets/pages/SignupPage7-password";
-import SignupPage8 from "./assets/pages/SignupPage8-agree";
-import SignupPage9 from "./assets/pages/SignupPage9-confirm";
-import SignupPage10 from "./assets/pages/SignupPage10-enter";
-import LoginPage from "./assets/pages/LoginPage";
-import { SearchPage } from "./assets/pages/SearchPage";
+import SignupPage1 from "./pages/SignupPage1";
+import SignupPage2 from "./pages/SignupPage2-name";
+import SignupPage3 from "./pages/SignupPage3-birthdate";
+import SignupPage4 from "./pages/SignupPage4-gender";
+import SignupPage5 from "./pages/SignupPage5-number";
+import SignupPage6 from "./pages/SignupPage6-email";
+import SignupPage7 from "./pages/SignupPage7-password";
+import SignupPage8 from "./pages/SignupPage8-agree";
+import SignupPage9 from "./pages/SignupPage9-confirm";
+import SignupPage10 from "./pages/SignupPage10-enter";
+import LoginPage from "./pages/LoginPage";
+import { SearchPage } from "./pages/SearchPage";
 import { Route, Routes } from "react-router-dom";
 import "./assets/sass.css";
-import { SetDp } from "./assets/pages/SetDp";
-import { Homepage } from "./assets/pages/Homepage";
-import { CreatePost } from "./assets/pages/CreatePostPage";
-import { CreateStoryPage } from "./assets/pages/CreateStoryPage";
-import { SelectPage } from "./assets/pages/SelectPage";
+import { SetDp } from "./pages/SetDp";
+import { Homepage } from "./pages/Homepage";
+import { CreatePost } from "./pages/CreatePostPage";
+import { CreateStoryPage } from "./pages/CreateStoryPage";
+import { SelectPage } from "./pages/SelectPage";
+import { UserProfile } from "./pages/UserProfile";
 function App() {
   return (
     <>
@@ -39,6 +40,7 @@ function App() {
         <Route path="/search" element={<SearchPage />}></Route>
         <Route path="/createstory" element={<CreateStoryPage />}></Route>
         <Route path="/selectuser" element={<SelectPage />}></Route>
+        <Route path="/userprofile" element={<UserProfile />}></Route>
       </Routes>
     </>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
-import { Back2Icon, SearchIcon } from "./../icons/Icons";
-import { capitalize } from "../../utils/helper";
+import { Back2Icon, SearchIcon } from "../assets/icons/Icons";
+import { capitalize } from "../utils/helper";
 const api = import.meta.env.VITE_API;
 
 export function SearchPage() {
