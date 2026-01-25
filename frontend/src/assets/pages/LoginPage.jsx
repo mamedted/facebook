@@ -86,10 +86,9 @@ function LoginPage() {
   return (
     <>
       {errorType.heading && <LoginModal errorType={errorType} setErrorType={setErrorType} />}
-      <BackBtn></BackBtn>
 
       <p className="text-center mt-[8%] text-sm text-gray-500">English (US) </p>
-      <img className="self-center border-2  rounded-full mt-[20%] mb-[20%] " src={Icon} width="60" alt="" />
+      <img onClick={() => nav("selectuser")} className="self-center border-2  rounded-full mt-[20%] mb-[20%] " src={Icon} width="60" alt="" />
       <input ref={input1} className="inp mb-2" placeholder="Email or mobile number" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
       <input ref={input2} className="inp" placeholder="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
       <button className="blueBtn mt-5" onClick={login}>

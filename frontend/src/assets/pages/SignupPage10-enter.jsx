@@ -24,24 +24,24 @@ function SignupPage10() {
       return;
     }
 
-    fetch(`${api}send`, {
+    fetch(`${api}signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userdata),
-    }).then((res) => {
-      switch (res.status) {
-        case 201:
-          alert("Account created succesfully");
-          // nav("/");
-          // reset();
-          break;
-        case 409:
-          alert("Email already exist");
-          break;
-        default:
-          alert("Something is wrong");
-      }
-    });
+    })
+      .then((res) => {
+        switch (res.status) {
+          case 201:
+            alert("Account created succesfully");
+            nav("/");
+            reset();
+            break;
+          case 409:
+            alert("Email already exist");
+            break;
+        }
+      })
+      .catch((e) => alert(e));
   }
 
   return (

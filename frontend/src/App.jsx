@@ -10,11 +10,14 @@ import SignupPage8 from "./assets/pages/SignupPage8-agree";
 import SignupPage9 from "./assets/pages/SignupPage9-confirm";
 import SignupPage10 from "./assets/pages/SignupPage10-enter";
 import LoginPage from "./assets/pages/LoginPage";
+import { SearchPage } from "./assets/pages/SearchPage";
 import { Route, Routes } from "react-router-dom";
 import "./assets/sass.css";
 import { SetDp } from "./assets/pages/SetDp";
 import { Homepage } from "./assets/pages/Homepage";
-
+import { CreatePost } from "./assets/pages/CreatePostPage";
+import { CreateStoryPage } from "./assets/pages/CreateStoryPage";
+import { SelectPage } from "./assets/pages/SelectPage";
 function App() {
   return (
     <>
@@ -32,6 +35,10 @@ function App() {
         <Route path="/signup10" element={<SignupPage10 />}></Route>
         <Route path="/setdp" element={<SetDp />}></Route>
         <Route path="/homepage" element={<Homepage />}></Route>
+        <Route path="/createpost" element={<CreatePost />}></Route>
+        <Route path="/search" element={<SearchPage />}></Route>
+        <Route path="/createstory" element={<CreateStoryPage />}></Route>
+        <Route path="/selectuser" element={<SelectPage />}></Route>
       </Routes>
     </>
   );
