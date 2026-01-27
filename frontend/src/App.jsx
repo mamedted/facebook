@@ -19,11 +19,13 @@ import { CreatePost } from "./pages/CreatePostPage";
 import { CreateStoryPage } from "./pages/CreateStoryPage";
 import { SelectPage } from "./pages/SelectPage";
 import { UserProfile } from "./pages/UserProfile";
+import { Tester } from "./pages/tester";
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<LoginPage />}></Route>
+        <Route path="/t" element={<Tester />}></Route>
         <Route path="/signup" element={<SignupPage1 />}></Route>
         <Route path="/signup2" element={<SignupPage2 />}></Route>
         <Route path="/signup3" element={<SignupPage3 />}></Route>

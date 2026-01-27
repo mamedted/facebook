@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PlusIcon } from "../assets/icons/Icons";
 import { ExitBtn } from "../buttons/Exit";
+import { Globe } from "../assets/icons/svgs";
+import { Menu2 } from "../assets/icons/svgs";
+import { Exit } from "../assets/icons/Icons";
 
 const api = import.meta.env.VITE_API;
 
@@ -57,6 +60,7 @@ export function Homepage() {
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setPosts(data.allPosts);
+        console.log(data.allPosts);
       } catch (err) {
         console.log("Failed to load posts", err);
         setError(err.message);
@@ -74,6 +78,7 @@ export function Homepage() {
       <MainNav></MainNav>
 
       <div className=" of ofy -mx-[14px] no-scrollbar">
+        {/* What's on your mind */}
         <div className=" flex fcy py-2 px-3 gap-2  ">
           <div className="flex fcx wh40 noshrink rounded ">
             <img onClick={() => nav("/userprofile")} src={user.DP ? api + user.DP : "/avatar.png"} className="rounded wm hm fit" alt="" />
@@ -90,6 +95,7 @@ export function Homepage() {
           </div>
         </div>
 
+        {/* Stories */}
         <div className="flex border-y-4 border-gray-200 p-2  mb-1 gap-2 of ofx no-scrollbar ">
           <div onClick={() => nav("/createstory")} className="w108 h190 flex flex-col fcy br br-lightgray noshrink rounded-xl of">
             <div className="h-1/2 wm">
@@ -109,6 +115,7 @@ export function Homepage() {
           ))}
         </div>
 
+        {/* Newsfeed */}
         <div className="ofy flex flex-col gap-2">
           {loading && (
             <div className="p-2 flex fcx ">
@@ -117,15 +124,45 @@ export function Homepage() {
           )}
           {!loading &&
             posts.map((p) => (
-              <div className="br" key={p._id}>
-                <div className="br flex fcy gap-2">
-                  <div className="wh30 br rounded of ">
+              <div className="br p-2" key={p._id}>
+                {/* header */}
+                <div className=" flex   gap-2">
+                  {/* profile picture */}
+                  <div className="wh40  rounded of ">
                     <img className=" wm hm fit" src={p.author.DP ? api + p.author.DP : "/avatar.png"} alt="" />
                   </div>
-                  <p className="b">{p.author.firstname + " " + p.author.lastname}</p>
-                </div>
+                  {/* name */}
+                  <div className=" flex flex-col">
+                    <p className="b text-[17px]">{p.author.firstname + " " + p.author.lastname}</p>
 
-                <p>{p.postContent}</p>
+                    <span className="flex  fcy text-[12px] gap4">
+                      14m • <Globe size={10} />
+                    </span>
+                  </div>
+                  {/* button */}
+                  <nav className=" flex hm ml-auto gap-2">
+                    <button>
+                      <Menu2 size={25} color={"gray"} />
+                    </button>
+
+                    <button>
+                      <Exit size={25} color={"gray"} />
+                    </button>
+                  </nav>
+                </div>
+                {/* body */}
+                <div className="">
+                  <p>{p.postContent}</p>
+
+                  {/* image1 */}
+                  <div className="br">
+                    {p.media.length === 1 && (
+                      <div>
+                        <img src={api + p.media[0]} alt="" />
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             ))}
         </div>

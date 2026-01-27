@@ -23,6 +23,7 @@ const url = "mongodb://127.0.0.1:27017";
 
 app.use(express.static("dp"));
 app.use(express.static("media_stories"));
+app.use(express.static("media_posts"));
 
 const options = {
   key: fs.readFileSync(process.env.SSL_KEY),
@@ -47,14 +48,14 @@ app.use(
       secure: true, // true ONLY in HTTPS
       maxAge: 1000 * 60 * 60 * 24, // 1 day
     },
-  }),
+  })
 );
 
 app.use(
   cors({
     origin: process.env.API,
     credentials: true,
-  }),
+  })
 );
 app.use(express.json());
 
@@ -66,6 +67,11 @@ app.use("/", fetchPostsRoutes);
 app.use("/", uploadStory);
 app.use("/", fetchStories);
 app.use("/", fetchUsers);
+
+app.post("/tester", (req, res) => {
+  console.log(req.body);
+  res.status(200).json({ status: "SUCCESS" });
+});
 
 https.createServer(options, app).listen(PORT, () => {
   console.log("Running in port 4000");

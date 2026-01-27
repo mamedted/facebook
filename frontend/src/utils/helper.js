@@ -161,3 +161,66 @@ function timeAgo(dateString) {
     day: "numeric",
   });
 }
+
+export async function sendText(url, a) {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: a,
+    });
+
+    if (!res.ok) {
+      throw new Error(`status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return { success: true, data };
+  } catch (err) {
+    console.log("Fetch error:", err);
+    return { success: false, error: err.message };
+  }
+}
+
+export async function sendFile(url, a) {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      credentials: "include",
+      body: a,
+    });
+
+    if (!res.ok) {
+      throw new Error(`status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return { success: true, data };
+  } catch (err) {
+    console.log("Fetch error:", err);
+    return { success: false, error: err.message };
+  }
+}
+
+import { useEffect } from "react";
+
+/**
+ * @param {string} targetKey - The key to listen for (e.g., "`" or "Enter")
+ * @param {function} callback - The function to run when the key is pressed
+ */
+export const key = (targetKey, callback) => {
+  useEffect(() => {
+    const handler = (event) => {
+      if (event.key === targetKey) {
+        callback(event);
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+
+    return () => {
+      window.removeEventListener("keydown", handler);
+    };
+  }, [targetKey, callback]); // Re-binds only if key or action changes
+};

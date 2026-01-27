@@ -6,10 +6,11 @@ const postSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    postContent: { type: String, required: true, trim: true },
+    postContent: { type: String, trim: true },
+    media: [{ type: String }],
     bg: { type: String, default: "" },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const Post = mongoose.model("Post", postSchema);
